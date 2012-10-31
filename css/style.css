@@ -48,3 +48,15 @@ label {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+#i18n-copied {
+    display: inline;
+    float: left;
+    margin-bottom: 0;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+    #i18n-copied.hidden {
+        display: none;
+    }

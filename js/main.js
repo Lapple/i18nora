@@ -60,14 +60,16 @@
 
   $(function() {
 
-    var view  = new View( categories ),
-        $code = $( '#i18n-code' );
+    var view   = new View( categories ),
+        $code  = $( '#i18n-code' ),
+        $alert = $( '#i18n-copied' );
 
     ko.applyBindings( view );
 
     $( '#copy-to-clipboard' ).zclip({
-      path : 'js/ZeroClipboard.swf',
-      copy : $code.text()
+      path      : 'js/ZeroClipboard.swf',
+      copy      : $code.text(),
+      afterCopy : $alert.fadeIn( 200 ).delay( 1500 ).fadeOut( 600 )
     });
 
   });
