@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Internationalizatora</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="page-header">
+                <h3>Internationalizatora</h3>
+            </div>
+
+            <div class="row">
+                <div class="span4">
+                    <div class="row i18n-row">
+                        <label>Primary Table</label>
+                        <input type="text" data-bind="value: table, valueUpdate: 'afterkeydown'" />
+                    </div>
+                    <div class="row i18n-row">
+                        <label>Translate Table</label>
+                        <input type="text" data-bind="value: translate, valueUpdate: 'afterkeydown'" />
+                    </div>
+                    <div class="row i18n-row">
+                        <label>Language Code</label>
+                        <input type="text" data-bind="value: language, valueUpdate: 'afterkeydown'" />
+                    </div>
+
+                    <div class="row i18n-row">
+                        <label>Migration Class</label>
+                        <input type="text" data-bind="value: migration, valueUpdate: 'afterkeydown'" />
+                    </div>
+                    <div class="row i18n-row">
+                        <label>Category</label>
+                        <input type="text" data-bind="value: category, valueUpdate: 'afterkeydown'" />
+                    </div>
+                    <div class="row i18n-row">
+                        <label>Key</label>
+                        <input type="text" data-bind="value: key, valueUpdate: 'afterkeydown'" />
+                    </div>
+                    <div class="row i18n-row">
+                        <label>Value</label>
+                        <textarea data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5"></textarea>
+                    </div>
+                </div>
+
+<pre class="i18n-code span8"><code>&lt;?php
+
+class <span data-bind="text: migration"></span> extends CDbMigration
+{
+    public function safeUp()
+    {
+        $this->getDbConnection()->createCommand()
+            ->insert('<span data-bind="text: table"></span>', array(
+                'category'     => '<span data-bind="text: category"></span>',
+                'status'       => 1,
+                'key'          => '<span data-bind="text: key"></span>',
+                'date_updated' => date("Y-m-d H:i:s")
+        ));
+        $id = $this->getDbConnection()->getLastInsertID();
+
+        $this->getDbConnection()->createCommand()
+            ->insert('<span data-bind="text: translate"></span>', array(
+                'i18n_id'  => $id,
+                'language' => '<span data-bind="text: language"></span>',
+                'text'     => '<span data-bind="text: value"></span>'
+            )
+        );
+    }
+
+    public function safeDown()
+    {
+        $row = $this->getDbConnection()->createCommand()
+            ->select('*')
+            ->from('<span data-bind="text: table"></span>')
+            ->where(
+                'category=:category AND key=:key AND language=:language',
+                array(
+                    ':category' => '<span data-bind="text: category"></span>',
+                    ':key'      => '<span data-bind="text: key"></span>',
+                    ':language' => '<span data-bind="text: language"></span>'
+                )
+            )
+            ->queryRow();
+
+        $id = $row[ 'id' ];
+
+        $this->getDbConnection()->createCommand()
+            ->delete('<span data-bind="text: table"></span>', 'id=:id', array( ':id' => $id ))
+        ));
+
+        $this->getDbConnection()->createCommand()
+            ->delete('<span data-bind="text: translate"></span>', 'i18n_id=:id', array( ':id' => $id ))
+        ));
+    }
+};
+</code></pre>
+            </div>
+        </div>
+
+        <script src="js/knockout-2.2.0.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <!-- <script src="js/highlight.min.js"></script> -->
+        <script src="js/main.js"></script>
+    </body>
+</html>
