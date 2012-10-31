@@ -81,12 +81,12 @@ private function _i18n_delete( $category, $key )
     $sql = "SELECT `id` FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>`
             WHERE `category`='{$category}' AND `key`='{$key}' LIMIT 1";
 
-    $id = Yii::app()->db->createCommand($sql)->queryColumn();
+    $id = Yii::app()->db->createCommand($sql)->queryScalar();
 
-    $sql = "DELETE FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` WHERE `id`={$id};";
+    $sql = "DELETE FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` WHERE `id`={$id}";
     Yii::app()->db->createCommand($sql)->execute();
 
-    $sql = "DELETE FROM `<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>` WHERE `i18n_id`={$id};";
+    $sql = "DELETE FROM `<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>` WHERE `i18n_id`={$id}";
     Yii::app()->db->createCommand($sql)->execute();
 }
 </code></pre>
