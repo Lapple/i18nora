@@ -36,7 +36,17 @@
 
   $(function() {
 
-    ko.applyBindings( new View() );
+    var view = new View();
+
+    ko.applyBindings( view );
+
+    $( '#i18n-categories' ).typeahead({
+      source  : categories,
+      updater : function( item ) {
+        view.category( item );
+        return item;
+      }
+    });
 
   });
 
