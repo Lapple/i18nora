@@ -3,15 +3,10 @@
   var View = function() {
     this.key       = ko.observable( '' );
     this.category  = ko.observable( '' );
-    this.migration = ko.observable( '' );
     this.value     = ko.observable( '' );
     this.table     = ko.observable( 'i18n' );
     this.translate = ko.observable( 'i18n_translate' );
     this.language  = ko.observable( 'ru' );
-
-    this.migrationInvalid = ko.computed(function() {
-      return this.migration() === '';
-    }, this);
 
     this.keyInvalid = ko.computed(function() {
       return this.key() === '';
