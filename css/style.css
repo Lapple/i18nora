@@ -12,11 +12,20 @@
         padding-bottom: 15px;
     }
 
-    .i18n-row label {
-        color: #999;
-        font-size: 13px;
-        margin-bottom: 2px;
-    }
+label {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.i18n-translation {
+    margin-top: 20px;
+}
+
+.i18n-translations {
+    margin-top: 20px;
+    border-top: 1px dotted #ddd;
+}
 
 .i18n-code {
     box-sizing: border-box;
@@ -25,6 +34,11 @@
         background: #E07C7C;
         padding: 0 4px;
     }
+
+.i18n-actions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 .typeahead .active a {
     color: #fff !important;

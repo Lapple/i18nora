@@ -16,48 +16,63 @@
     <body>
         <div class="container">
 
-            <div class="page-header">
-                <h3>Internationalizatora</h3>
-            </div>
+            <h3>Internationalizatora</h3>
 
             <div class="row">
-                <div class="span4">
-                    <div class="row i18n-row">
-                        <label>Primary Table</label>
-                        <input type="text" data-bind="value: table, valueUpdate: 'afterkeydown'" />
-                    </div>
-                    <div class="row i18n-row">
-                        <label>Translate Table</label>
-                        <input type="text" data-bind="value: translate, valueUpdate: 'afterkeydown'" />
-                    </div>
-                    <div class="row i18n-row">
-                        <label>Language Code</label>
-                        <input type="text" data-bind="value: language, valueUpdate: 'afterkeydown'" />
-                    </div>
-
-                    <div class="row i18n-row">
-                        <label>Category</label>
-                        <input type="text" id="i18n-categories" data-bind="value: category, valueUpdate: 'afterkeydown'" />
-                    </div>
-                    <div class="row i18n-row">
-                        <label>Key</label>
-                        <input type="text" data-bind="value: key, valueUpdate: 'afterkeydown'" />
-                    </div>
-                    <div class="row i18n-row">
-                        <label>Value</label>
-                        <textarea data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5"></textarea>
+                <div class="span12">
+                    <div class="row">
+                        <div class="span4">
+                            <label>Primary Table</label>
+                            <input type="text" class="span4" data-bind="value: table, valueUpdate: 'afterkeydown'" />
+                        </div>
+                        <div class="span4">
+                            <label>Translate Table</label>
+                            <input type="text" class="span4" data-bind="value: translate, valueUpdate: 'afterkeydown'" />
+                        </div>
+                        <div class="span4">
+                            <label>Language Code</label>
+                            <input type="text" class="span4" data-bind="value: language, valueUpdate: 'afterkeydown'" />
+                        </div>
                     </div>
                 </div>
+                <div class="span12 i18n-translations">
+                    <div class="row">
+                        <div data-bind="foreach: translations">
+                            <div class="span4 i18n-translation">
+                                <label>Category</label>
+                                <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown', attr: { 'data-source': $parent.source }" data-provide="typeahead" />
+                                <label>Key</label>
+                                <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" />
+                                <label>Value</label>
+                                <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="span12 i18n-actions">
+                    <div class="pull-right">
+                        <button id="copy-to-clipboard" class="btn btn-primary" type="button">
+                            Copy to clipboard
+                        </button>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-bind="click: add">
+                        Add translation
+                    </button>
+                    <button class="btn" type="button" data-bind="click: removeLast">
+                        Remove last
+                    </button>
+                </div>
+            </div>
 
-<pre class="i18n-code span8"><code>public function safeUp()
-{
+<pre class="i18n-code" id="i18n-code"><code>public function safeUp()
+{<span data-bind="foreach: translations">
     $id = $this->_i18n('<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>', '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>');
-    $this->_i18n_translate($id, '<span data-bind="text: value, css: { invalid: valueInvalid }"></span>');
+    $this->_i18n_translate($id, '<span data-bind="text: value, css: { invalid: valueInvalid }"></span>');</span>
 }
 
 public function safeDown()
-{
-    $this->_i18n_delete('<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>', '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>');
+{<span data-bind="foreach: translations">
+    $this->_i18n_delete('<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>', '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>');</span>
 }
 
 private function _i18n( $category, $key )
@@ -89,11 +104,11 @@ private function _i18n_delete( $category, $key )
     Yii::app()->db->createCommand($sql)->execute();
 }
 </code></pre>
-            </div>
         </div>
 
         <script src="js/knockout-2.2.0.js"></script>
         <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.zclip.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/data.js"></script>
         <script src="js/main.js"></script>
