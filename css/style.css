@@ -25,6 +25,10 @@
     border-color: #eee;
     box-sizing: border-box;
 }
+    .i18n-code .invalid {
+        background: #E07C7C;
+        padding: 0 4px;
+    }
 
 .container {
     margin-top: 20px;

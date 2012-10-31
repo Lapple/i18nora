@@ -1,18 +1,47 @@
 (function() {
 
-  var view = {
-    key       : ko.observable( '' ),
-    category  : ko.observable( '' ),
-    migration : ko.observable( '' ),
-    value     : ko.observable( '' ),
-    table     : ko.observable( 'i18n' ),
-    translate : ko.observable( 'i18n_translate' ),
-    language  : ko.observable( 'ru' )
+  var View = function() {
+    this.key       = ko.observable( '' );
+    this.category  = ko.observable( '' );
+    this.migration = ko.observable( '' );
+    this.value     = ko.observable( '' );
+    this.table     = ko.observable( 'i18n' );
+    this.translate = ko.observable( 'i18n_translate' );
+    this.language  = ko.observable( 'ru' );
+
+    this.migrationInvalid = ko.computed(function() {
+      return this.migration() === '';
+    }, this);
+
+    this.keyInvalid = ko.computed(function() {
+      return this.key() === '';
+    }, this);
+
+    this.categoryInvalid = ko.computed(function() {
+      return this.category() === '';
+    }, this);
+
+    this.valueInvalid = ko.computed(function() {
+      return this.value() === '';
+    }, this);
+
+    this.languageInvalid = ko.computed(function() {
+      return this.language() === '';
+    }, this);
+
+    this.tableInvalid = ko.computed(function() {
+      return this.table() === '';
+    }, this);
+
+    this.translateInvalid = ko.computed(function() {
+      return this.translate() === '';
+    }, this);
   };
+
 
   $(function() {
 
-    ko.applyBindings( view );
+    ko.applyBindings( new View() );
 
   });
 

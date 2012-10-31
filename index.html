@@ -55,51 +55,50 @@
 
 <pre class="i18n-code span8"><code>&lt;?php
 
-class <span data-bind="text: migration"></span> extends CDbMigration
+class <span data-bind="text: migration, css: { invalid: migrationInvalid }"></span> extends CDbMigration
 {
     public function safeUp()
     {
         $this->getDbConnection()->createCommand()
-            ->insert('<span data-bind="text: table"></span>', array(
-                'category'     => '<span data-bind="text: category"></span>',
+            ->insert('<span data-bind="text: table, css: { invalid: tableInvalid }"></span>', array(
+                'category'     => '<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>',
                 'status'       => 1,
-                'key'          => '<span data-bind="text: key"></span>',
+                'key'          => '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>',
                 'date_updated' => date("Y-m-d H:i:s")
         ));
         $id = $this->getDbConnection()->getLastInsertID();
 
         $this->getDbConnection()->createCommand()
-            ->insert('<span data-bind="text: translate"></span>', array(
+            ->insert('<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>', array(
                 'i18n_id'  => $id,
-                'language' => '<span data-bind="text: language"></span>',
-                'text'     => '<span data-bind="text: value"></span>'
+                'language' => '<span data-bind="text: language, css: { invalid: languageInvalid }"></span>',
+                'text'     => '<span data-bind="text: value, css: { invalid: valueInvalid }"></span>'
             )
         );
     }
 
     public function safeDown()
     {
-        $row = $this->getDbConnection()->createCommand()
-            ->select('*')
-            ->from('<span data-bind="text: table"></span>')
+        $id = $this->getDbConnection()->createCommand()
+            ->select('id')
+            ->from('<span data-bind="text: table, css: { invalid: tableInvalid }"></span>')
             ->where(
                 'category=:category AND key=:key AND language=:language',
                 array(
-                    ':category' => '<span data-bind="text: category"></span>',
-                    ':key'      => '<span data-bind="text: key"></span>',
-                    ':language' => '<span data-bind="text: language"></span>'
+                    ':category' => '<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>',
+                    ':key'      => '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>',
+                    ':language' => '<span data-bind="text: language, css: { invalid: languageInvalid }"></span>'
                 )
             )
-            ->queryRow();
-
-        $id = $row[ 'id' ];
+            ->limit( 1 )
+            ->queryColumn();
 
         $this->getDbConnection()->createCommand()
-            ->delete('<span data-bind="text: table"></span>', 'id=:id', array( ':id' => $id ))
+            ->delete('<span data-bind="text: table, css: { invalid: tableInvalid }"></span>', 'id=:id', array( ':id' => $id ))
         ));
 
         $this->getDbConnection()->createCommand()
-            ->delete('<span data-bind="text: translate"></span>', 'i18n_id=:id', array( ':id' => $id ))
+            ->delete('<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>', 'i18n_id=:id', array( ':id' => $id ))
         ));
     }
 };
