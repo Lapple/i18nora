@@ -40,7 +40,7 @@
                         <div data-bind="foreach: translations">
                             <div class="span4 i18n-translation">
                                 <label>Category</label>
-                                <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown', attr: { 'data-source': $parent.source }" data-provide="typeahead" />
+                                <input type="text" class="i18n-categories span4" data-bind="value: category, attr: { 'data-source': $parent.source }" data-provide="typeahead" />
                                 <label>Key</label>
                                 <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" />
                                 <label>Value</label>
