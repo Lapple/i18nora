@@ -68,7 +68,9 @@
 
     $( '#copy-to-clipboard' ).zclip({
       path      : 'js/ZeroClipboard.swf',
-      copy      : $code.text(),
+      copy      : function() {
+        return $code.text();
+      },
       afterCopy : function() {
         $alert.fadeIn( 200 ).delay( 1500 ).fadeOut( 600 );
       }
