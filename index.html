@@ -80,7 +80,7 @@ public function safeDown()
 
 private function _i18n( $category, $key )
 {
-    $sql = "INSERT INTO `<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>` (`category`, `status`, `key`)
+    $sql = "INSERT INTO `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` (`category`, `status`, `key`)
             VALUES ('{$category}', 1, '{$key}');";
     Yii::app()->db->createCommand($sql)->execute();
     return Yii::app()->db->getLastInsertID();
