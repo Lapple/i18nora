@@ -45,6 +45,8 @@
                                 <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" />
                                 <label>Value</label>
                                 <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5"></textarea>
+<pre class="i18n-yii-template" data-bind="visible: !categoryInvalid() && !keyInvalid()">&lt;?= Yii::t('<span data-bind="text: category"></span>', '<span data-bind="text: key"></span>') ?&gt;
+</pre>
                             </div>
                         </div>
                     </div>
