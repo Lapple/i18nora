@@ -62,11 +62,11 @@ label {
     }
 
 .i18n-yii-template {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 0;
-    border: none;
+    padding: 0 !important;
+    border: none !important;
     border-radius: 0;
-    background: transparent;
+    background: transparent !important;
+    box-shadow: none !important;
+    cursor: text !important;
+    font-family: Consolas, Menlo, monospace;
 }

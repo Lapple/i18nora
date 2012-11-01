@@ -16,6 +16,10 @@
     this.valueInvalid = ko.computed(function() {
       return this.value() === '';
     }, this);
+
+    this.yiiTemplate = ko.computed(function() {
+      return '<?= Yii::t(\'' + this.category() + '\', \'' + this.key() + '\'); ?>';
+    }, this);
   };
 
   var View = function( categoriesSource ) {
@@ -57,6 +61,10 @@
       return item;
     };
   };
+
+  $( document ).on( 'click', '.i18n-yii-template', function() {
+    $( this ).select();
+  });
 
   $(function() {
 
