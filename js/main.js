@@ -26,13 +26,12 @@
     }, this);
   };
 
-  var View = function( categoriesSource ) {
+  var View = function() {
     this.translations = ko.observableArray([ new Translation() ]);
 
     this.table     = ko.observable( 'i18n' );
     this.translate = ko.observable( 'i18n_translate' );
     this.language  = ko.observable( 'ru' );
-    this.source    = '["' + categoriesSource.join( '","' ) + '"]';
 
     this.languageInvalid = ko.computed(function() {
       return this.language() === '';
@@ -59,6 +58,13 @@
     $( '#i18n-code' ).select();
   };
 
+  View.prototype.addTypeahead = function( el, translation ) {
+    $( el ).find( '.i18n-categories' ).typeahead({
+      source  : categories,
+      updater : typeaheadUpdaterFactory( translation )
+    });
+  };
+
   var typeaheadUpdaterFactory = function( translation ) {
     return function( item ) {
       translation.category( item );
@@ -72,7 +78,7 @@
 
   $(function() {
 
-    var view   = new View( categories ),
+    var view   = new View(),
         $code  = $( '#i18n-code' ),
         $alert = $( '#i18n-copied' );
 

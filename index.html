@@ -35,9 +35,9 @@
                 </div>
                 <div class="span12 i18n-translations">
                     <div class="row">
-                        <div data-bind="foreach: translations">
+                        <div data-bind="foreach: { data: translations, afterRender: addTypeahead }">
                             <div class="span4 i18n-translation">
-                                <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown', attr: { 'data-source': $parent.source }" data-provide="typeahead" placeholder="Category" />
+                                <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" />
                                 <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" placeholder="Key" />
                                 <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5" placeholder="Value"></textarea>
                                 <input type="text" class="i18n-yii-template span4" data-bind="value: yiiTemplate" readonly />
