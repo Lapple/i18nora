@@ -10,16 +10,14 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
+        <link href='http://fonts.googleapis.com/css?family=Dosis:500' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css?v=2">
     </head>
     <body>
         <div class="container" id="i18nora">
-
-            <h3>internationalizatora</h3>
-
             <div class="row">
-                <div class="span12">
+                <div class="span12 settings-row">
                     <div class="row">
                         <div class="span4">
                             <div class="mustache">
@@ -31,10 +29,13 @@
                                 <input type="text" class="span4" data-bind="value: translate, valueUpdate: 'afterkeydown'" placeholder="Translate table" />
                             </div>
                         </div>
-                        <div class="span4">
+                        <div class="span2">
                             <div class="mustache">
-                                <input type="text" class="span4 country-code" data-bind="value: language, valueUpdate: 'afterkeydown', style: { backgroundImage: flagUrl }" maxlength="2" placeholder="Language code" />
+                                <input type="text" class="span2" data-bind="value: language, valueUpdate: 'afterkeydown'" maxlength="2" placeholder="Language code" />
                             </div>
+                        </div>
+                        <div class="span2">
+                            <h3>I<em>18</em>nora</h3>
                         </div>
                     </div>
                 </div>
@@ -74,6 +75,8 @@
                     </button>
                 </div>
             </div>
+
+        </div>
 
 <pre class="i18n-code" id="i18n-code"><code>public function safeUp()
 {<span data-bind="foreach: translations">
@@ -115,13 +118,12 @@ private function _i18n_delete( $category, $key )
     Yii::app()->db->createCommand($sql)->execute();
 }
 </code></pre>
-        </div>
 
         <script src="js/knockout-2.2.0.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.zclip.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/data.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/main.js?v=2"></script>
     </body>
 </html>
