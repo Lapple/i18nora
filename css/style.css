@@ -35,6 +35,11 @@ label {
     margin-bottom: 2px;
 }
 
+.country-code {
+    background-repeat: no-repeat;
+    background-position: 275px 50%;
+}
+
 .i18n-translation {
     margin-top: 20px;
 }
@@ -97,7 +102,7 @@ label {
     #i18nora input:focus,
     #i18nora textarea:focus {
         border-bottom-color: #ccc;
-        background: #f5f5f5;
+        background-color: #f5f5f5;
     }
 
 #i18nora textarea {

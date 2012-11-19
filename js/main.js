@@ -41,6 +41,10 @@
       return this.table() === '';
     }, this);
 
+    this.flagUrl = ko.computed(function() {
+      return 'url(img/flags/' + this.language() + '.png)';
+    }, this);
+
     this.translateInvalid = ko.computed(function() {
       return this.translate() === '';
     }, this);
