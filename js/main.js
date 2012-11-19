@@ -18,7 +18,11 @@
     }, this);
 
     this.yiiTemplate = ko.computed(function() {
-      return '<?= Yii::t(\'' + this.category() + '\', \'' + this.key() + '\'); ?>';
+      if ( this.keyInvalid() || this.categoryInvalid() ) {
+        return '';
+      } else {
+        return '<?= Yii::t(\'' + this.category() + '\', \'' + this.key() + '\'); ?>';
+      }
     }, this);
   };
 

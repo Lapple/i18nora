@@ -12,26 +12,24 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div class="container">
+        <div class="container" id="i18nora">
 
-            <h3>Internationalizatora</h3>
+            <h3>internationalizatora</h3>
 
             <div class="row">
                 <div class="span12">
                     <div class="row">
                         <div class="span4">
-                            <label>Primary Table</label>
-                            <input type="text" class="span4" data-bind="value: table, valueUpdate: 'afterkeydown'" />
+                            <input type="text" class="span4" data-bind="value: table, valueUpdate: 'afterkeydown'" placeholder="Primary table" />
                         </div>
                         <div class="span4">
-                            <label>Translate Table</label>
-                            <input type="text" class="span4" data-bind="value: translate, valueUpdate: 'afterkeydown'" />
+                            <input type="text" class="span4" data-bind="value: translate, valueUpdate: 'afterkeydown'" placeholder="Translate table" />
                         </div>
                         <div class="span4">
-                            <label>Language Code</label>
-                            <input type="text" class="span4" data-bind="value: language, valueUpdate: 'afterkeydown'" />
+                            <input type="text" class="span4" data-bind="value: language, valueUpdate: 'afterkeydown'" placeholder="Language code" />
                         </div>
                     </div>
                 </div>
@@ -39,14 +37,15 @@
                     <div class="row">
                         <div data-bind="foreach: translations">
                             <div class="span4 i18n-translation">
-                                <label>Category</label>
-                                <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown', attr: { 'data-source': $parent.source }" data-provide="typeahead" />
-                                <label>Key</label>
-                                <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" />
-                                <label>Value</label>
-                                <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5"></textarea>
-                                <input type="text" class="i18n-yii-template span4" data-bind="visible: !categoryInvalid() && !keyInvalid(), value: yiiTemplate" readonly />
+                                <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown', attr: { 'data-source': $parent.source }" data-provide="typeahead" placeholder="Category" />
+                                <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" placeholder="Key" />
+                                <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5" placeholder="Value"></textarea>
+                                <input type="text" class="i18n-yii-template span4" data-bind="value: yiiTemplate" readonly />
                             </div>
+                        </div>
+                        <div class="span4" id="add-translation" data-bind="click: add">
+                            <big>+</big>
+                            Add translation
                         </div>
                     </div>
                 </div>
@@ -59,9 +58,6 @@
                             Copy to clipboard
                         </button>
                     </div>
-                    <button class="btn btn-primary" type="button" data-bind="click: add">
-                        Add translation
-                    </button>
                     <button class="btn" type="button" data-bind="click: removeLast">
                         Remove last
                     </button>
