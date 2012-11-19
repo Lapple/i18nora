@@ -22,13 +22,19 @@
                 <div class="span12">
                     <div class="row">
                         <div class="span4">
-                            <input type="text" class="span4" data-bind="value: table, valueUpdate: 'afterkeydown'" placeholder="Primary table" />
+                            <div class="mustache">
+                                <input type="text" class="span4" data-bind="value: table, valueUpdate: 'afterkeydown'" placeholder="Primary table" />
+                            </div>
                         </div>
                         <div class="span4">
-                            <input type="text" class="span4" data-bind="value: translate, valueUpdate: 'afterkeydown'" placeholder="Translate table" />
+                            <div class="mustache">
+                                <input type="text" class="span4" data-bind="value: translate, valueUpdate: 'afterkeydown'" placeholder="Translate table" />
+                            </div>
                         </div>
                         <div class="span4">
-                            <input type="text" class="span4 country-code" data-bind="value: language, valueUpdate: 'afterkeydown', style: { backgroundImage: flagUrl }" maxlength="2" placeholder="Language code" />
+                            <div class="mustache">
+                                <input type="text" class="span4 country-code" data-bind="value: language, valueUpdate: 'afterkeydown', style: { backgroundImage: flagUrl }" maxlength="2" placeholder="Language code" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -36,9 +42,15 @@
                     <div class="row">
                         <div data-bind="foreach: { data: translations, afterRender: addTypeahead }">
                             <div class="span4 i18n-translation">
-                                <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" />
-                                <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" placeholder="Key" />
-                                <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5" placeholder="Value"></textarea>
+                                <div class="mustache">
+                                    <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" />
+                                </div>
+                                <div class="mustache">
+                                    <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" placeholder="Key" />
+                                </div>
+                                <div class="mustache mustache-textarea">
+                                    <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5" placeholder="Value"></textarea>
+                                </div>
                                 <input type="text" class="i18n-yii-template span4" data-bind="value: yiiTemplate" readonly />
                             </div>
                         </div>
