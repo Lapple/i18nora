@@ -180,7 +180,7 @@ label {
     }
 
 #header {
-    background: #006DCC;
+    background: #006DCC url("../img/bg.png") -100px;
     margin-top: -20px;
     padding: 4px 0;
 }
