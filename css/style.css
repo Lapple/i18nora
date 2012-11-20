@@ -16,6 +16,7 @@ h3 {
 
 .btn {
     border-radius: 2px;
+    font-family: "Montserrat", sans-serif;
 }
 
 .i18n-row {
@@ -139,6 +140,7 @@ label {
 }
 
 #add-translation {
+    font-family: "Montserrat", sans-serif;
     cursor: pointer;
     border: 1px dashed #ccc;
     padding: 125px 10px 0;
