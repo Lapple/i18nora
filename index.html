@@ -50,7 +50,7 @@
                         <div data-bind="foreach: { data: translations, afterRender: addTypeahead }">
                             <div class="span4 i18n-translation">
                                 <div class="mustache">
-                                    <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" />
+                                    <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" autofocus />
                                 </div>
                                 <div class="mustache">
                                     <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" placeholder="Key" />
