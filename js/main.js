@@ -75,7 +75,7 @@
       self.request = $.ajax({
         url     : checkerAction,
         data    : { value: value, language: self.language() },
-        type    : 'POST',
+        type    : 'GET',
         headers : {
           'Access-Control-Allow-Origin': '*'
         },
