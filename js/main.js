@@ -72,13 +72,21 @@
         delete self.request;
       }
 
-      self.request = $.post( checkerAction, { value: value, language: self.language() }, function( reply ) {
-        var parsedReply = $.parseJSON( reply );
+      self.request = $.ajax({
+        url     : checkerAction,
+        data    : { value: value, language: self.language() },
+        type    : 'POST',
+        headers : {
+          'Access-Control-Allow-Origin': '*'
+        },
+        success : function( reply ) {
+          var parsedReply = $.parseJSON( reply );
 
-        if ( parsedReply.category && parsedReply.key ) {
-          translation.isDuplicate( true );
-          translation.duplicateCategory( parsedReply.category );
-          translation.duplicateKey( parsedReply.key );
+          if ( parsedReply.category && parsedReply.key ) {
+            translation.isDuplicate( true );
+            translation.duplicateCategory( parsedReply.category );
+            translation.duplicateKey( parsedReply.key );
+          }
         }
       });
 
