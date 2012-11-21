@@ -33,8 +33,10 @@
       }
     }, this);
 
+    this.throttledValue = ko.computed( this.value ).extend({ throttle: 400 });
+
     // Checking for the existing translations
-    this.value.subscribe(function( value ) {
+    this.throttledValue.subscribe(function( value ) {
       dispatcher.trigger( 'value:updated', [ value, self ] );
     });
   };
