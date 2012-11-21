@@ -1,9 +1,16 @@
 (function() {
+  var checkerAction = 'http://flatora.ru';
 
   var Translation = function() {
-    this.key       = ko.observable( '' );
-    this.category  = ko.observable( '' );
-    this.value     = ko.observable( '' );
+    var self = this;
+
+    this.key         = ko.observable( '' );
+    this.category    = ko.observable( '' );
+    this.value       = ko.observable( '' );
+    this.isDuplicate = ko.observable( false );
+
+    this.duplicateCategory = ko.observable( '' );
+    this.duplicateKey      = ko.observable( '' );
 
     this.keyInvalid = ko.computed(function() {
       return this.key() === '';
@@ -24,6 +31,30 @@
         return '<?= Yii::t(\'' + this.category() + '\', \'' + this.key() + '\'); ?>';
       }
     }, this);
+
+    // Checking for the existing translations
+    this.value.subscribe(function( value ) {
+      self.isDuplicate( false );
+
+      if ( value.length === 0 ) {
+        return;
+      }
+
+      if ( self.request ) {
+        self.request.abort();
+        delete self.request;
+      }
+
+      self.request = $.get( checkerAction, { value: value }, function( reply ) {
+        var parsedReply = $.parseJSON( reply );
+
+        if ( parsedReply.category && parsedReply.key ) {
+          self.isDuplicate( true );
+          self.duplicateCategory( parsedReply.category );
+          self.duplicateKey( parsedReply.key );
+        }
+      });
+    });
   };
 
   var View = function() {

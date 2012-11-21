@@ -12,7 +12,7 @@
 
         <link href='http://fonts.googleapis.com/css?family=Dosis:500|Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=8">
+        <link rel="stylesheet" href="css/style.css?v=9">
     </head>
     <body>
         <div id="header">
@@ -49,6 +49,10 @@
                     <div class="row">
                         <div data-bind="foreach: { data: translations, afterRender: addTypeahead }">
                             <div class="span4 i18n-translation">
+                                <div class="alert alert-danger" data-bind="css: { in: isDuplicate }">
+                                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                                    <p><strong>Duplicate detected!</strong> You can replace the translation with <code>&lt;?= Yii::t("<span data-bind="text: duplicateCategory"></span>", "<span data-bind="text: duplicateKey"></span>"); ?&gt;</code></p>
+                                </div>
                                 <div class="mustache">
                                     <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" autofocus />
                                 </div>
@@ -99,7 +103,7 @@
 
     private function _i18n( $category, $key )
     {
-        $sql = "SELECT `id` FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` WHERE `category` = {$category} AND `key` = {$key} LIMIT 1";
+        $sql = "SELECT `id` FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` WHERE `category` = '{$category}' AND `key` = '{$key}' LIMIT 1";
         $id  = Yii::app()->db->createCommand($sql)->queryScalar();
 
         if ( $id ) return $id;
@@ -135,6 +139,6 @@
         <script src="js/jquery.zclip.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/data.js"></script>
-        <script src="js/main.js?v=3"></script>
+        <script src="js/main.js?v=4"></script>
     </body>
 </html>
