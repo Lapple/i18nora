@@ -72,7 +72,7 @@
         delete self.request;
       }
 
-      self.request = $.get( checkerAction, { value: value, language: self.language() }, function( reply ) {
+      self.request = $.post( checkerAction, { value: value, language: self.language() }, function( reply ) {
         var parsedReply = $.parseJSON( reply );
 
         if ( parsedReply.category && parsedReply.key ) {
