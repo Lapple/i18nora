@@ -73,10 +73,10 @@
       }
 
       self.request = $.ajax({
-        url     : checkerAction,
-        data    : { value: value, language: self.language() },
-        type    : 'GET',
-        success : function( reply ) {
+        url      : checkerAction,
+        data     : { value: value, language: self.language() },
+        dataType : 'jsonp',
+        success  : function( reply ) {
           var parsedReply = $.parseJSON( reply );
 
           if ( parsedReply.category && parsedReply.key ) {
