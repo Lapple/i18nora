@@ -79,12 +79,10 @@
         data     : { value: value, language: self.language() },
         dataType : 'jsonp',
         success  : function( reply ) {
-          var parsedReply = $.parseJSON( reply );
-
-          if ( parsedReply.category && parsedReply.key ) {
+          if ( reply.category && reply.key ) {
             translation.isDuplicate( true );
-            translation.duplicateCategory( parsedReply.category );
-            translation.duplicateKey( parsedReply.key );
+            translation.duplicateCategory( reply.category );
+            translation.duplicateKey( reply.key );
           }
         }
       });
