@@ -76,9 +76,6 @@
         url     : checkerAction,
         data    : { value: value, language: self.language() },
         type    : 'GET',
-        headers : {
-          'Access-Control-Allow-Origin': '*'
-        },
         success : function( reply ) {
           var parsedReply = $.parseJSON( reply );
 
