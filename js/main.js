@@ -1,5 +1,6 @@
 (function() {
-  var checkerAction = 'http://flatora.ru';
+  var checkerAction = 'http://dev.flatora.ru/site/index/i18n_check_value',
+      dispatcher    = $( document );
 
   var Translation = function() {
     var self = this;
@@ -34,30 +35,13 @@
 
     // Checking for the existing translations
     this.value.subscribe(function( value ) {
-      self.isDuplicate( false );
-
-      if ( value.length === 0 ) {
-        return;
-      }
-
-      if ( self.request ) {
-        self.request.abort();
-        delete self.request;
-      }
-
-      self.request = $.get( checkerAction, { value: value }, function( reply ) {
-        var parsedReply = $.parseJSON( reply );
-
-        if ( parsedReply.category && parsedReply.key ) {
-          self.isDuplicate( true );
-          self.duplicateCategory( parsedReply.category );
-          self.duplicateKey( parsedReply.key );
-        }
-      });
+      dispatcher.trigger( 'value:updated', [ value, self ] );
     });
   };
 
   var View = function() {
+    var self = this;
+
     this.translations = ko.observableArray([ new Translation() ]);
 
     this.table     = ko.observable( 'i18n' );
@@ -75,6 +59,30 @@
     this.translateInvalid = ko.computed(function() {
       return this.translate() === '';
     }, this);
+
+    dispatcher.on( 'value:updated', function( e, value, translation ) {
+      translation.isDuplicate( false );
+
+      if ( value.length === 0 ) {
+        return;
+      }
+
+      if ( self.request ) {
+        self.request.abort();
+        delete self.request;
+      }
+
+      self.request = $.get( checkerAction, { value: value, language: self.language() }, function( reply ) {
+        var parsedReply = $.parseJSON( reply );
+
+        if ( parsedReply.category && parsedReply.key ) {
+          translation.isDuplicate( true );
+          translation.duplicateCategory( parsedReply.category );
+          translation.duplicateKey( parsedReply.key );
+        }
+      });
+
+    });
   };
 
   View.prototype.add = function() {
