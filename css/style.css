@@ -48,13 +48,18 @@ label {
     overflow: hidden;
 }
 
+#i18n-code {
+    border: none;
+    border-top: 1px solid #f0f0f0;
+    background: #fafafa;
+}
+
 .i18n-code {
     box-sizing: border-box;
     border-radius: 0;
     margin: -20px 0 0;
     border: none;
-    border-top: 1px solid #f0f0f0;
-    background: #fafafa;
+    background: transparent;
 }
     .i18n-code .invalid {
         background: #E07C7C;

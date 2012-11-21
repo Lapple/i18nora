@@ -12,7 +12,7 @@
 
         <link href='http://fonts.googleapis.com/css?family=Dosis:500|Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=7">
+        <link rel="stylesheet" href="css/style.css?v=8">
     </head>
     <body>
         <div id="header">
@@ -84,46 +84,51 @@
 
         </div>
 
-<pre class="i18n-code" id="i18n-code"><code>public function safeUp()
-{<span data-bind="foreach: translations">
-    $id = $this->_i18n('<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>', '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>');
-    $this->_i18n_translate($id, '<span data-bind="text: value, css: { invalid: valueInvalid }"></span>');</span>
-}
+<div id="i18n-code">
+<div class="container">
+<pre class="i18n-code"><code>    public function safeUp()
+    {<span data-bind="foreach: translations">
+        $id = $this->_i18n('<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>', '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>');
+        $this->_i18n_translate($id, '<span data-bind="text: value, css: { invalid: valueInvalid }"></span>');</span>
+    }
 
-public function safeDown()
-{<span data-bind="foreach: translations">
-    $this->_i18n_delete('<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>', '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>');</span>
-}
+    public function safeDown()
+    {<span data-bind="foreach: translations">
+        $this->_i18n_delete('<span data-bind="text: category, css: { invalid: categoryInvalid }"></span>', '<span data-bind="text: key, css: { invalid: keyInvalid }"></span>');</span>
+    }
 
-private function _i18n( $category, $key )
-{
-    $sql = "INSERT INTO `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` (`category`, `status`, `key`)
-            VALUES ('{$category}', 1, '{$key}');";
-    Yii::app()->db->createCommand($sql)->execute();
-    return Yii::app()->db->getLastInsertID();
-}
+    private function _i18n( $category, $key )
+    {
+        $sql = "SELECT `id` FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` WHERE `category` = {$category} AND `key` = {$key} LIMIT 1";
+        $id  = Yii::app()->db->createCommand($sql)->queryScalar();
 
-private function _i18n_translate( $id, $text )
-{
-    $sql = "INSERT INTO `<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>` (`i18n_id`, `language`, `text`)
-            VALUES({$id}, '<span data-bind="text: language, css: { invalid: languageInvalid }"></span>', '{$text}');";
-    Yii::app()->db->createCommand($sql)->execute();
-}
+        if ( $id ) return $id;
 
-private function _i18n_delete( $category, $key )
-{
-    $sql = "SELECT `id` FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>`
-            WHERE `category`='{$category}' AND `key`='{$key}' LIMIT 1";
+        $sql = "INSERT INTO `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` (`category`, `status`, `key`) VALUES ('{$category}', 1, '{$key}');";
+        Yii::app()->db->createCommand($sql)->execute();
+        return Yii::app()->db->getLastInsertID();
+    }
 
-    $id = Yii::app()->db->createCommand($sql)->queryScalar();
+    private function _i18n_translate( $id, $text )
+    {
+        $sql = "INSERT INTO `<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>` (`i18n_id`, `language`, `text`)
+                VALUES({$id}, '<span data-bind="text: language, css: { invalid: languageInvalid }"></span>', '{$text}');";
+        Yii::app()->db->createCommand($sql)->execute();
+    }
 
-    $sql = "DELETE FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` WHERE `id`={$id}";
-    Yii::app()->db->createCommand($sql)->execute();
+    private function _i18n_delete( $category, $key )
+    {
+        $sql = "SELECT `id` FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>`
+                WHERE `category`='{$category}' AND `key`='{$key}' LIMIT 1";
 
-    $sql = "DELETE FROM `<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>` WHERE `i18n_id`={$id}";
-    Yii::app()->db->createCommand($sql)->execute();
-}
-</code></pre>
+        $id = Yii::app()->db->createCommand($sql)->queryScalar();
+
+        $sql = "DELETE FROM `<span data-bind="text: table, css: { invalid: tableInvalid }"></span>` WHERE `id`={$id}";
+        Yii::app()->db->createCommand($sql)->execute();
+
+        $sql = "DELETE FROM `<span data-bind="text: translate, css: { invalid: translateInvalid }"></span>` WHERE `i18n_id`={$id}";
+        Yii::app()->db->createCommand($sql)->execute();
+    }</code></pre></div></div>
 
         <script src="js/knockout-2.2.0.js"></script>
         <script src="js/jquery.min.js"></script>
