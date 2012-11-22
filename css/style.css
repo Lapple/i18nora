@@ -244,9 +244,12 @@ label {
     }
 
 .alert {
+    font-family: "Montserrat", sans-serif;
+}
+
+.i18n-translation .alert {
     background: rgba( 255, 200, 200, 0.8 );
     border-color: rgba( 235, 170, 170, 0.8 );
-    font-family: "Montserrat", sans-serif;
     padding: 6px 8px 8px;
 }
 
