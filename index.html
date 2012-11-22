@@ -12,7 +12,7 @@
 
         <link href='http://fonts.googleapis.com/css?family=Dosis:500|Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=10">
+        <link rel="stylesheet" href="css/style.css?v=11">
     </head>
     <body>
         <div id="header">
@@ -53,8 +53,8 @@
                                     <a class="close" data-bind="click: dismissAlert" href="#">&times;</a>
                                     <p><strong>Duplicate detected!</strong> You can replace the translation with <code>&lt;?= Yii::t("<span data-bind="text: duplicateCategory"></span>", "<span data-bind="text: duplicateKey"></span>"); ?&gt;</code></p>
                                 </div>
-                                <div class="mustache">
-                                    <input type="text" class="i18n-categories span4" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" autofocus />
+                                <div class="mustache mustache-3">
+                                    <input type="text" class="i18n-categories span3" data-bind="value: category, valueUpdate: 'afterkeydown'" placeholder="Category" autofocus />
                                 </div>
                                 <div class="mustache">
                                     <input type="text" class="span4" data-bind="value: key, valueUpdate: 'afterkeydown'" placeholder="Key" />
@@ -63,6 +63,9 @@
                                     <textarea class="span4" data-bind="value: value, valueUpdate: 'afterkeydown'" rows="5" placeholder="Value"></textarea>
                                 </div>
                                 <input type="text" class="i18n-yii-template span4" data-bind="value: yiiTemplate" readonly />
+                                <span class="remove-translation" data-bind="click: $parent.removeTranslation">
+                                    Remove
+                                </span>
                             </div>
                         </div>
                         <div class="span4" id="add-translation" data-bind="click: add">
@@ -80,9 +83,6 @@
                             Copy to clipboard
                         </button>
                     </div>
-                    <button class="btn" type="button" data-bind="click: removeLast">
-                        Remove last
-                    </button>
                 </div>
             </div>
 
@@ -139,6 +139,6 @@
         <script src="js/jquery.zclip.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/data.js"></script>
-        <script src="js/main.js?v=12"></script>
+        <script src="js/main.js?v=13"></script>
     </body>
 </html>

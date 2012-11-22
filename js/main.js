@@ -66,6 +66,10 @@
       return this.translate() === '';
     }, this);
 
+    this.removeTranslation = function( translation ) {
+      self.translations.remove( translation );
+    };
+
     dispatcher.on( 'value:updated', function( e, value, translation ) {
       translation.isDuplicate( false );
 
@@ -96,10 +100,6 @@
 
   View.prototype.add = function() {
     this.translations.push( new Translation() );
-  };
-
-  View.prototype.removeLast = function() {
-    this.translations.pop();
   };
 
   View.prototype.select = function() {

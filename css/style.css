@@ -65,14 +65,9 @@ label {
     background: transparent;
 }
     .i18n-code .invalid {
-        background: #E07C7C;
+        background: #e07c7c;
         padding: 0 4px;
     }
-
-.i18n-actions {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
 
 .typeahead .active a {
     color: #fff !important;
@@ -224,6 +219,10 @@ label {
         color: #68B2E4;
     }
 
+.mustache-3 {
+    width: 220px;
+}
+
 .i18n-translation .alert {
     position: absolute;
     left: 0;
@@ -267,3 +266,19 @@ label {
     margin-top: 5px;
     border-color: rgba( 235, 170, 170, 0.8 );
 }
+
+.remove-translation {
+    color: #aaa;
+    position: absolute;
+    top: 0;
+    padding: 0 3px;
+    right: 2px;
+    height: 29px;
+    line-height: 29px;
+    cursor: pointer;
+    font-size: 13px;
+}
+    .remove-translation:hover {
+        color: #e07c7c;
+        background: rgba( 255, 200, 200, 0.4 );
+    }
