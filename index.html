@@ -12,7 +12,7 @@
 
         <link href='http://fonts.googleapis.com/css?family=Dosis:500|Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=9">
+        <link rel="stylesheet" href="css/style.css?v=10">
     </head>
     <body>
         <div id="header">
@@ -50,7 +50,7 @@
                         <div data-bind="foreach: { data: translations, afterRender: addTypeahead }">
                             <div class="span4 i18n-translation">
                                 <div class="alert alert-danger" data-bind="css: { in: isDuplicate }">
-                                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                                    <a class="close" data-bind="click: dismissAlert" href="#">&times;</a>
                                     <p><strong>Duplicate detected!</strong> You can replace the translation with <code>&lt;?= Yii::t("<span data-bind="text: duplicateCategory"></span>", "<span data-bind="text: duplicateKey"></span>"); ?&gt;</code></p>
                                 </div>
                                 <div class="mustache">
@@ -139,6 +139,6 @@
         <script src="js/jquery.zclip.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/data.js"></script>
-        <script src="js/main.js?v=11"></script>
+        <script src="js/main.js?v=12"></script>
     </body>
 </html>

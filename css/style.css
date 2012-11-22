@@ -1,4 +1,4 @@
-html {
+html, input, textarea, button {
     -webkit-font-smoothing: antialiased;
 }
 

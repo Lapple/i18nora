@@ -41,6 +41,10 @@
     });
   };
 
+  Translation.prototype.dismissAlert = function() {
+    this.isDuplicate( false );
+  };
+
   var View = function() {
     var self = this;
 
